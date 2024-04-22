@@ -8,6 +8,10 @@ from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
+@app.get('/alwayson-status')
+async def status():
+  return JSONResponse({ 'status': 'healthy'}, 200)
+
 # This is a place holder for what will eventually be getting things from the Database :thinking: MongoDB?
 def get_responses(method: str):
   with open(f'{os.getcwd()}/alwayson/.alwayson', 'r') as alwayson_f:
