@@ -1,40 +1,26 @@
-from collections import defaultdict
-import json
-import os
+from fastapi import FastAPI, APIRouter
 
-from fastapi import FastAPI
-from fastapi.requests import Request
-from fastapi.responses import JSONResponse
+# Maybe create a function called load_routers or something that takes in the fast_api
+# app and then appends all of the imported routers :shrug:
+from alwayson.controllers.status import router as status_router
+from alwayson.controllers.get import router as get_router
+from alwayson.controllers.manifests import router as manifest_router
 
 app = FastAPI()
 
-@app.get('/alwayson-status')
-async def status():
-  return JSONResponse({ 'status': 'healthy'}, 200)
+# Setup AlwaysON System Routes
+# The sys_router for is for Always ON System Routes
+sys_router = APIRouter(prefix='/v1')
 
-# This is a place holder for what will eventually be getting things from the Database :thinking: MongoDB?
-def get_responses(method: str):
-  with open(f'{os.getcwd()}/alwayson/.alwayson', 'r') as alwayson_f:
-    return json.loads(alwayson_f.read())[method]
+sys_router.include_router(manifest_router)
+sys_router.include_router(status_router)
 
-# Probably need to persist this outside of the app right now
-calls = defaultdict(lambda: 0)
 
-@app.get('/{pathname:path}')
-async def get(req: Request, pathname: str) -> JSONResponse:
-  path = f'/{pathname}'
+# Setup Echo Routes.
+# The echo_router is the router that will handle all requests from a test system and echo's back the configured response
+echo_router = APIRouter()
+echo_router.include_router(get_router)
 
-  responses = get_responses('get') # retrieve all of the configured get responses
-  res = responses.get(path, None)
-  if res and isinstance(res, type([])):
-    # handle multiple responses
-    res_n = res[calls[path]]
-    calls[path] += 1
-    return JSONResponse(res_n['body'], res_n['status_code'])
-  elif res:
-    # Handle the case of a singlse response
-    return JSONResponse(res['body'], res['status_code'])
-  
-  # This is a bad request instead of 404 b/c the endpoint was found but the request has not
-  # been configured ahead of time.
-  return JSONResponse({ 'message': f'{path} has not been configured with a response'}, 400)
+
+app.include_router(sys_router)
+app.include_router(echo_router)
