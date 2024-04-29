@@ -10,3 +10,19 @@ services:
     command: [ "--host", "0.0.0.0", "--port", "8000", "--reload" ]
     volumes:
       - ./alwayson:/opt/code-scribes/alwayson
+
+  db:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INIT_DB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME}
+      MONGO_INIT_DB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
+      MONOG_INITDB_DATABASE: always-on
+    volumes:
+      - ./init-db.js:/docker-entrypoint-initdb.d/init-db.js
+      - dbdata:/data/db
+
+volumes:
+  dbdata:
