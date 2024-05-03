@@ -21,6 +21,6 @@ sys_router.include_router(status_router)
 echo_router = APIRouter()
 echo_router.include_router(get_router)
 
-
+# Include the echo routes and system routes in the main application
 app.include_router(sys_router)
 app.include_router(echo_router)

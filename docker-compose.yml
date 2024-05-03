@@ -8,6 +8,11 @@ services:
     ports:
       - "8000:8000"
     command: [ "--host", "0.0.0.0", "--port", "8000", "--reload" ]
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: db
+      DB_PORT: 27017
     volumes:
       - ./alwayson:/opt/code-scribes/alwayson
 
