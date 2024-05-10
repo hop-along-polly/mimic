@@ -17,5 +17,5 @@ tests: .venv requirements-dev.txt
 
 clean:
 	rm -rf .venv
-	docker-compose down && docker volume rm always-on_dbdata
+	docker-compose down && docker volume rm always-on_dbdata || true
  

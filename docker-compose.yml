@@ -14,7 +14,7 @@ services:
       DB_HOST: db
       DB_PORT: 27017
     volumes:
-      - ./alwayson:/opt/code-scribes/alwayson
+      - ${PWD}/alwayson:/opt/code-scribes/alwayson
 
   db:
     image: mongo

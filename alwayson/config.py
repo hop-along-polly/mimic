@@ -15,6 +15,4 @@ class Config:
 
   @property
   def mongodb_uri(self):
-    uri = f'mongodb://{self._db_user}:{self._db_pw}@{self._db_host}:{self._db_port}/always-on?authSource=admin'
-    print('MongoDB URI:', uri)
-    return uri
+    return f'mongodb://{self._db_user}:{self._db_pw}@{self._db_host}:{self._db_port}/always-on?authSource=admin'

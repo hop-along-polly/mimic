@@ -5,13 +5,3 @@ admin.createUser({
 	pwd: 'always-on-pw',  // Should match the DB_PASSWORD env var in .env
 	roles: [{ role: 'readWrite', db: 'always-on' }],
 });
-
-// TODO Remove this test data
-alwaysOn = db.getSiblingDB('always-on')
-alwaysOn.createCollection('manifests')
-alwaysOn.getCollection('manifests').insertMany([
-  {
-    "request": "jwt_req",
-    "responses": "jwt_res"
-  }
-])
