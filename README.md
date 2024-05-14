@@ -5,6 +5,9 @@
 **NOTE: As of right now AlwaysON only supports the HTTP protocol but eventually we would like it to support additional protocols such as gRPC, GraphQL etc.**
 
 
+If you're looking to contribute to AlwaysON please read the [Contributing Guidelines](./CONTRIBUTING.md) which will help you oriented with the project, what
+we expect from contributors and how to setup your development environment.
+
 ## Terminology
 
 - `Request`: An Http request received by AlwaysON.
@@ -18,6 +21,7 @@
 - `Manifest`: A JSON object (not necessarily a file but it could be) thats maps
               a single Request to a single Response or series of Responses that
               AlwaysON returns when the Request is received by an echo endpoint.
+
 
 ## Introduction
  - What is AlwaysON
