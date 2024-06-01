@@ -1,9 +1,10 @@
-from typing import List
+from typing import List, Union
 
 from motor.motor_asyncio import AsyncIOMotorClient
+from pymongo.collection import ReturnDocument
 
 from alwayson.config import Config
-from alwayson.models import ManifestEntry
+from alwayson.models import AlwaysOnResponse, ManifestEntry, AlwaysOnRequest
 
 
 # TODO this probably should be able to select a DB or collection that's
@@ -22,6 +23,20 @@ class ManifestRepo:
     res_jwt = entry.encoded_responses() # TODO Probably need to pass the Org specific secret here
 
     query = { 'request': req_jwt }
-    update = { '$set': { 'request': req_jwt, 'responses': res_jwt } }
+    update = { '$set': { 'request': req_jwt, 'responses': res_jwt, 'called': 0 } }
 
     await self._collection.update_one(query, update, upsert=True)
+
+  async def get_responses(self, request: AlwaysOnRequest):
+    req_jwt = request.encode()
+
+    query = { 'request': req_jwt }
+    update = { '$inc': { 'called': 1 } }
+
+    doc = await self._collection.find_one_and_update(query, update, return_doc=ReturnDocument.AFTER)
+
+    if not doc:
+      return doc, -1
+
+    responses = AlwaysOnResponse.decode_responses(doc['responses'])
+    return responses, doc['called']
