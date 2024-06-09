@@ -41,7 +41,7 @@ we expect from contributors and how to setup your development environment.
 - [x] Dockerize
 - [x] Select DB....I'm feeling Mongo
 - [ ] Endpoints
-  - [/] GET
+  - [x] GET
   - [ ] POST
   - [ ] PUT
   - [ ] PATCH
