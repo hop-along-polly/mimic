@@ -14,16 +14,16 @@
 ## Code of Conduct
 
 1. Don't be an a**hole. (i.e. be open to hearing others thoughts and opinions and be respectful of them especially when you disagree)
-2. Understand written communication is imperfect and a lot of tone and meaning can be lost in translation. Never Assume malice when forgivable error will suffice.
-3. Ensure you've met the definition of done for all pull requests,
-4. Use Draft PRs when you want to share code that does not meet the [definition of done](#definition-of-done)
+2. Understand written communication is imperfect and a lot of tone and meaning can be lost in translation. Never assume malice when forgivable error will suffice.
+3. Ensure you've met the [Definition of Done](#definition-of-done) for all pull requests,
+4. Use Draft PRs when you want to share code that does not meet the [Definition of Done](#definition-of-done)
 
 
 ## Definition of Done
 
 - I have only included commits that apply to the referenced Github Issue.
 - I have performed a self-review of my code.
-- I have take time to refactor the code to ensure testability, and maintainability.
+- I have taken the time to refactor the code to ensure testability and maintainability.
 - I have made corresponding changes to the documentation.
 - I have added tests that prove my fix/feature is working per requirements.
 - I have provided sufficient code comments so any developer can support my code.

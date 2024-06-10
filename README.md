@@ -30,21 +30,22 @@ we expect from contributors and how to setup your development environment.
 
 
 ## Future Development
- - [x] Dependency Injection
- - [] CI/CD
-  - [] Mypy - Typing
-  - [] Linting
-  - [] Code Coverage
-  - [] Github Actions
- - [] Logging
- - [x] Dockerize
- - [x] Select DB....I'm feeling Mongo
- - [] Endpoints
-  - [/] GET
-  - [] POST
-  - [] PUT
-  - [] PATCH
-  - [] DELETE
- - [] Deploy to AWS
-  - [] Kubernetes or Lambda?
-  - [] Point Domain at K8 cluster
+## Future Development
+- [x] Dependency Injection
+- [ ] CI/CD
+  - [ ] Mypy - Typing
+  - [ ] Linting
+  - [ ] Code Coverage
+  - [ ] Github Actions
+- [ ] Logging
+- [x] Dockerize
+- [x] Select DB....I'm feeling Mongo
+- [ ] Endpoints
+  - [x] GET
+  - [ ] POST
+  - [ ] PUT
+  - [ ] PATCH
+  - [ ] DELETE
+- [ ] Deploy to AWS
+  - [ ] Kubernetes or Lambda?
+  - [ ] Point Domain at K8 cluster
