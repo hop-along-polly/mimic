@@ -56,6 +56,8 @@ While in development no LTS tags will be published.
 
  - GNU Make: 3.81
  - Python: 3.11
+ - PIP
+ - venv
  - Docker Engine: 20.10.12 
  - Docker Compose: v2.2.3
 
