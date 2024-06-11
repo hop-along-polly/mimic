@@ -8,12 +8,13 @@ from alwayson.db.client import DbClient
 
 router = APIRouter()
 
+
 def get_db_client():
-  cfg = Config.create()
-  return DbClient.create(cfg)
+    cfg = Config.create()
+    return DbClient.create(cfg)
 
 
-@router.get('/status')
+@router.get("/status")
 async def status(db: Annotated[Dict, Depends(get_db_client)]):
-  db_health = await db.health()
-  return JSONResponse({ 'api': 'online', 'db': db_health }, 200)
+    db_health = await db.health()
+    return JSONResponse({"api": "online", "db": db_health}, 200)
