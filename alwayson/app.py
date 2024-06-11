@@ -10,7 +10,7 @@ app = FastAPI()
 
 # Setup AlwaysON System Routes
 # The sys_router for is for Always ON System Routes
-sys_router = APIRouter(prefix="/v1")
+sys_router = APIRouter(prefix='/v1')
 
 sys_router.include_router(manifest_router)
 sys_router.include_router(status_router)
