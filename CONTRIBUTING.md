@@ -61,7 +61,6 @@ While in development no LTS tags will be published.
  - Docker Engine: 20.10.12 
  - Docker Compose: v2.2.3
 
-
 ### Environment Setup
 
 0. Review the Terminology section of the README if you are not already familiar with the systems terminology.
@@ -93,7 +92,22 @@ If everything is working the response should be
 4. Happy Coding!
 
 
-## Tests
+## CI Checks
+
+### Linting
+We use `black` for our linter. You can check your code by running:
+```sh
+make lint
+```
+Don't worry though! `Black` can automatically fix a lot of your
+errors by running:
+```sh
+make lint-fix
+```
+
+This runs as part of our Github CI-Checks.
+
+### Tests
 
 AlwaysOn's test-suite can be run with `make tests`. This will create a virtual environment, install dependencies and run the tests. If preferred the test-suite can be run with `python -m pytest tests/ -s` but dependencies will have to be installed manually.
 
