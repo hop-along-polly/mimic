@@ -4,24 +4,26 @@ VENV_PIP ?= .venv/bin/pip
 ENV ?= dev
 
 .PHONY: clean tests
+.SILENT: devendencies
 
 .venv: requirements.txt
 	${PYTHON_CMD} -m venv .venv
 	${VENV_PIP} install -r requirements.txt
 
-
-# TODO Figure out a way that I don't always have to install dev dependencies?
+# This is more of a helper to be used by test specific commands. The results are
+# captured and only printed IF the command itself fails, effectively suppressing
+# all the package installation.
 devendencies: requirements-dev.txt
-	${VENV_PIP} install -r requirements-dev.txt
+	results=`${VENV_PIP} install -r requirements-dev.txt` || echo ${results}
 
 tests: .venv devendencies
-	${VENV_PYTHON} -m pytest tests/ -s
+	@${VENV_PYTHON} -m pytest tests/ -s
 
 lint: .venv devendencies
-	${VENV_PYTHON} -m black --check alwayson tests
+	@${VENV_PYTHON} -m black --check alwayson tests
 
-lint-fix: .venv dependencies
-	${VENV_PYTHON} -m black alwayson tests
+lint-fix: .venv devendencies
+	@${VENV_PYTHON} -m black alwayson tests
 
 clean:
 	rm -rf .venv
