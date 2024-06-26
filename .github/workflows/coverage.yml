@@ -16,4 +16,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install devendencies and run tests
-        run: make test
+        run: make tests
