@@ -1,0 +1,19 @@
+name: Coverage
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "main"
+
+job:
+  test:
+    name: Run tests & display coverage
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install devendencies and run tests
+        run: make test
