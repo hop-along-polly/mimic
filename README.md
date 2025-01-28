@@ -30,7 +30,7 @@ we expect from contributors and how to setup your development environment.
 
 
 ## Future Development
-## Future Development
+- [] Rename to Testerozza
 - [x] Dependency Injection
 - [ ] CI/CD
   - [ ] Mypy - Typing
