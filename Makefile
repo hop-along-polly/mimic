@@ -19,10 +19,10 @@ devendencies: requirements-dev.txt
 tests: .venv devendencies
 	@${VENV_PYTHON} -m pytest tests/ -s
 
-lint: .venv devendencies
+format: .venv devendencies
 	@${VENV_PYTHON} -m black --check alwayson tests
 
-lint-fix: .venv devendencies
+format-fix: .venv devendencies
 	@${VENV_PYTHON} -m black alwayson tests
 
 clean:
