@@ -17,28 +17,29 @@ class JWTEncodeable:
 
 
 class AlwaysOnResponse(BaseModel):
-  status_code: (
-      int  # TODO could probably further restruct this to valid HTTP status codes.
-  )
-  body: Union[Dict[str, Any], List[Dict]]
+    status_code: (
+        int  # TODO could probably further restruct this to valid HTTP status codes.
+    )
+    body: Union[Dict[str, Any], List[Dict]]
 
-  # TODO This is 100% a misplaced responsibility since it's decoding a list of AlwaysOnResponses
-  # and not just a single one.
-  # I think the solution is creating a Encodeable class that has default encode/decode methods
-  # and each of these classes can overwrite those as needed.
-  @classmethod
-  def decode_responses(cls, res: str):
-      decoded = jwt.decode(res, SECRET, algorithms=["HS256"])["responses"]
-      return [cls(**r) for r in decoded]
+    # TODO This is 100% a misplaced responsibility since it's decoding a list of AlwaysOnResponses
+    # and not just a single one.
+    # I think the solution is creating a Encodeable class that has default encode/decode methods
+    # and each of these classes can overwrite those as needed.
+    @classmethod
+    def decode_responses(cls, res: str):
+        decoded = jwt.decode(res, SECRET, algorithms=["HS256"])["responses"]
+        return [cls(**r) for r in decoded]
 
-  # TODO This is 100% a misplaced responsibility since it's decoding a list of AlwaysOnResponses
-  # and not just a single one.
-  # I think the solution is creating a Encodeable class that has default encode/decode methods
-  # and each of these classes can overwrite those as needed.
-  @classmethod
-  def decode_responses(cls, res: str):
-    decoded = jwt.decode(res, SECRET, algorithms=['HS256'])['responses']
-    return [ cls(**r) for r in decoded ]
+    # TODO This is 100% a misplaced responsibility since it's decoding a list of AlwaysOnResponses
+    # and not just a single one.
+    # I think the solution is creating a Encodeable class that has default encode/decode methods
+    # and each of these classes can overwrite those as needed.
+    @classmethod
+    def decode_responses(cls, res: str):
+        decoded = jwt.decode(res, SECRET, algorithms=["HS256"])["responses"]
+        return [cls(**r) for r in decoded]
+
 
 class AlwaysOnRequest(BaseModel, JWTEncodeable):
     method: str  # TODO make this an enum
