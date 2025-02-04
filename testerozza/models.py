@@ -5,7 +5,7 @@ import jwt
 
 # TODO This needs to become a setting specifically for the
 # tenant
-SECRET = "always-on-secret-key"
+SECRET = "testerozza-secret-key"
 
 
 class JWTEncodeable:
@@ -16,13 +16,13 @@ class JWTEncodeable:
         pass
 
 
-class AlwaysOnResponse(BaseModel):
+class TesterozzaResponse(BaseModel):
     status_code: (
         int  # TODO could probably further restruct this to valid HTTP status codes.
     )
     body: Union[Dict[str, Any], List[Dict]]
 
-    # TODO This is 100% a misplaced responsibility since it's decoding a list of AlwaysOnResponses
+    # TODO This is 100% a misplaced responsibility since it's decoding a list of TesterozzaResponses
     # and not just a single one.
     # I think the solution is creating a Encodeable class that has default encode/decode methods
     # and each of these classes can overwrite those as needed.
@@ -31,7 +31,7 @@ class AlwaysOnResponse(BaseModel):
         decoded = jwt.decode(res, SECRET, algorithms=["HS256"])["responses"]
         return [cls(**r) for r in decoded]
 
-    # TODO This is 100% a misplaced responsibility since it's decoding a list of AlwaysOnResponses
+    # TODO This is 100% a misplaced responsibility since it's decoding a list of TesterozzaResponses
     # and not just a single one.
     # I think the solution is creating a Encodeable class that has default encode/decode methods
     # and each of these classes can overwrite those as needed.
@@ -41,7 +41,7 @@ class AlwaysOnResponse(BaseModel):
         return [cls(**r) for r in decoded]
 
 
-class AlwaysOnRequest(BaseModel, JWTEncodeable):
+class TesterozzaRequest(BaseModel, JWTEncodeable):
     method: str  # TODO make this an enum
     url: str  # TODO add some regex validation?
 
@@ -49,17 +49,17 @@ class AlwaysOnRequest(BaseModel, JWTEncodeable):
         return jwt.encode(self.__dict__, SECRET)
 
 
-# Handles the AlwaysON manifest
+# Handles the Testerozza manifest
 class ManifestEntry(BaseModel):
-    request: AlwaysOnRequest
-    responses: Union[AlwaysOnResponse, List[AlwaysOnResponse]]
+    request: TesterozzaRequest
+    responses: Union[TesterozzaResponse, List[TesterozzaResponse]]
 
     @classmethod
     def decode_and_create(cls, req: str, res: str):
         request = jwt.decode(req, SECRET, algorithms=["HS256"])
 
         decoded_res = jwt.decode(res, SECRET, algorithms=["HS256"])["responses"]
-        responses = [AlwaysOnResponse(**r) for r in decoded_res]
+        responses = [TesterozzaResponse(**r) for r in decoded_res]
 
         return cls(request=request, responses=responses)
 

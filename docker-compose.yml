@@ -14,17 +14,17 @@ services:
       DB_HOST: db
       DB_PORT: 27017
     volumes:
-      - ${PWD}/alwayson:/opt/code-scribes/alwayson
+      - ${PWD}/testerozza:/opt/code-scribes/testerozza
 
   db:
     image: mongo
     restart: always
-    ports:
+    ports: 
       - 27017:27017
     environment:
       MONGO_INIT_DB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME}
       MONGO_INIT_DB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
-      MONOG_INITDB_DATABASE: always-on
+      MONOG_INITDB_DATABASE: testerozza
     volumes:
       - ./init-db.js:/docker-entrypoint-initdb.d/init-db.js
       - dbdata:/data/db

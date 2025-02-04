@@ -3,8 +3,8 @@ from typing import List, Union
 from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo.collection import ReturnDocument
 
-from alwayson.config import Config
-from alwayson.models import AlwaysOnResponse, ManifestEntry, AlwaysOnRequest
+from testerozza.config import Config
+from testerozza.models import TesterozzaResponse, ManifestEntry, TesterozzaRequest
 
 
 # TODO this probably should be able to select a DB or collection that's
@@ -31,7 +31,7 @@ class ManifestRepo:
 
         await self._collection.update_one(query, update, upsert=True)
 
-    async def get_responses(self, request: AlwaysOnRequest):
+    async def get_responses(self, request: TesterozzaRequest):
         req_jwt = request.encode()
 
         query = {"request": req_jwt}
@@ -44,5 +44,5 @@ class ManifestRepo:
         if not doc:
             return doc, -1
 
-        responses = AlwaysOnResponse.decode_responses(doc["responses"])
+        responses = TesterozzaResponse.decode_responses(doc["responses"])
         return responses, doc["called"]

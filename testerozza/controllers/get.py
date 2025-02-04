@@ -4,8 +4,8 @@ from fastapi import APIRouter, Depends
 from fastapi.requests import Request
 from fastapi.responses import JSONResponse
 
-from alwayson.controllers.injectors import inject_manifest_repo
-from alwayson.models import AlwaysOnRequest
+from testerozza.controllers.injectors import inject_manifest_repo
+from testerozza.models import TesterozzaRequest
 
 
 router = APIRouter()
@@ -17,7 +17,7 @@ async def get(
     pathname: str,
     manifests: Annotated[dict, Depends(inject_manifest_repo)],
 ) -> JSONResponse:
-    request = AlwaysOnRequest(
+    request = TesterozzaRequest(
         method=req.method,  # Could honestly hardcode this but I'm thinking of creating a middleware that does this for us.
         url=str(
             req.url

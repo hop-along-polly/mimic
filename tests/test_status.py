@@ -1,8 +1,8 @@
 from fastapi.testclient import TestClient
 import pytest
 
-from alwayson.app import app
-from alwayson.controllers.status import get_db_client
+from testerozza.app import app
+from testerozza.controllers.status import get_db_client
 
 
 class MockDbClient:

@@ -1,8 +1,8 @@
 from fastapi.testclient import TestClient
 import pytest
 
-from alwayson.app import app
-from alwayson.controllers.injectors import inject_manifest_repo
+from testerozza.app import app
+from testerozza.controllers.injectors import inject_manifest_repo
 
 
 @pytest.mark.asyncio

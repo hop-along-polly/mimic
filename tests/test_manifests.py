@@ -1,9 +1,9 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from alwayson.app import app
-from alwayson.controllers.injectors import inject_manifest_repo
-from alwayson.models import AlwaysOnRequest, AlwaysOnResponse, ManifestEntry
+from testerozza.app import app
+from testerozza.controllers.injectors import inject_manifest_repo
+from testerozza.models import TesterozzaRequest, TesterozzaResponse, ManifestEntry
 
 
 @pytest.mark.asyncio
@@ -30,9 +30,9 @@ async def test_upload_full_manifest(mock_db, mock_manifest_repo):
     # TODO Might be better if I just have a method for reading these things in the repository
     actual = ManifestEntry.decode_and_create(record["request"], record["responses"])
     assert (
-        AlwaysOnRequest(method="GET", url="https://testerozza.com/health")
+        TesterozzaRequest(method="GET", url="https://testerozza.com/health")
         == actual.request
     )
     assert [
-        AlwaysOnResponse(status_code=200, body={"status": "healthy"})
+        TesterozzaResponse(status_code=200, body={"status": "healthy"})
     ] == actual.responses

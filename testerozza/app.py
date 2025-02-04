@@ -2,13 +2,13 @@ from fastapi import FastAPI, APIRouter
 
 # Maybe create a function called load_routers or something that takes in the fast_api
 # app and then appends all of the imported routers :shrug:
-from alwayson.controllers.status import router as status_router
-from alwayson.controllers.get import router as get_router
-from alwayson.controllers.manifests import router as manifest_router
+from testerozza.controllers.status import router as status_router
+from testerozza.controllers.get import router as get_router
+from testerozza.controllers.manifests import router as manifest_router
 
 app = FastAPI()
 
-# Setup AlwaysON System Routes
+# Setup Testerozza System Routes
 # The sys_router for is for Always ON System Routes
 sys_router = APIRouter(prefix="/v1")
 

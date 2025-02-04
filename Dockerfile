@@ -10,9 +10,9 @@ RUN pip install -r requirements.txt && \
     pip install -r requirements-dev.txt; \
   fi
 
-COPY alwayson alwayson
+COPY testerozza testerozza
 
 EXPOSE 8000
 
-ENTRYPOINT [ "uvicorn", "alwayson.app:app"] 
+ENTRYPOINT [ "uvicorn", "testerozza.app:app"] 
 CMD ["--host", "0.0.0.0", "--port", "8000" ]
