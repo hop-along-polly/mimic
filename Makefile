@@ -20,11 +20,11 @@ tests: .venv devendencies
 	@${VENV_PYTHON} -m pytest tests/ -s
 
 format: .venv devendencies
-	@${VENV_PYTHON} -m black --check alwayson tests
+	@${VENV_PYTHON} -m black --check testerozza tests
 
 format-fix: .venv devendencies
-	@${VENV_PYTHON} -m black alwayson tests
+	@${VENV_PYTHON} -m black testerozza tests
 
 clean:
 	rm -rf .venv
-	docker-compose down && docker volume rm always-on_dbdata || true
+	docker-compose down && docker volume rm testerozza_dbdata || true

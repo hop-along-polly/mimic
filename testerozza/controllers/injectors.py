@@ -1,5 +1,5 @@
-from alwayson.config import Config
-from alwayson.db.manifest_repo import ManifestRepo
+from testerozza.config import Config
+from testerozza.db.manifest_repo import ManifestRepo
 
 
 def inject_manifest_repo():

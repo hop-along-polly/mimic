@@ -3,9 +3,9 @@ from typing import Annotated, Dict
 from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 
-from alwayson.controllers.injectors import inject_manifest_repo
-from alwayson.models import Manifest
-from alwayson.db.manifest_repo import ManifestRepo
+from testerozza.controllers.injectors import inject_manifest_repo
+from testerozza.models import Manifest
+from testerozza.db.manifest_repo import ManifestRepo
 
 
 router = APIRouter(prefix="/manifests")
