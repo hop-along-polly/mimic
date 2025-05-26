@@ -1,6 +1,6 @@
 # Description of Work
 
-[Github Issue Link](https://github.com/hop-along-polly/always-on/issues/XXX)
+[Github Issue Link](https://github.com/hop-along-polly/mimic/issues/XXX)
 
 Include a description of the work including research, list of changes, concerns and any notes.
 

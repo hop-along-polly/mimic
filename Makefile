@@ -4,7 +4,7 @@ VENV_PIP ?= .venv/bin/pip
 ENV ?= dev
 
 .PHONY: clean tests
-.SILENT: devendencies
+.SILENT: dependencies
 
 .venv: requirements.txt
 	${PYTHON_CMD} -m venv .venv
@@ -13,18 +13,18 @@ ENV ?= dev
 # This is more of a helper to be used by test specific commands. The results are
 # captured and only printed IF the command itself fails, effectively suppressing
 # all the package installation.
-devendencies: requirements-dev.txt
+dependencies: requirements-dev.txt
 	results=`${VENV_PIP} install -r requirements-dev.txt` || echo ${results}
 
-tests: .venv devendencies
+tests: .venv dependencies
 	@${VENV_PYTHON} -m pytest tests/ -s
 
-format: .venv devendencies
-	@${VENV_PYTHON} -m black --check testerozza tests
+format: .venv dependencies
+	@${VENV_PYTHON} -m black --check mimc tests
 
-format-fix: .venv devendencies
-	@${VENV_PYTHON} -m black testerozza tests
+format-fix: .venv dependencies
+	@${VENV_PYTHON} -m black mimc tests
 
 clean:
 	rm -rf .venv
-	docker-compose down && docker volume rm testerozza_dbdata || true
+	docker-compose down && docker volume rm mimc_dbdata || true

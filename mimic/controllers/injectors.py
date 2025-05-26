@@ -1,5 +1,5 @@
-from testerozza.config import Config
-from testerozza.db.manifest_repo import ManifestRepo
+from mimic.config import Config
+from mimic.db.manifest_repo import ManifestRepo
 
 
 def inject_manifest_repo():

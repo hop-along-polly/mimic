@@ -3,9 +3,8 @@ from typing import Annotated, Dict
 from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 
-from testerozza.controllers.injectors import inject_manifest_repo
-from testerozza.models import Manifest
-from testerozza.db.manifest_repo import ManifestRepo
+from mimic.controllers.injectors import inject_manifest_repo
+from mimic.models import Manifest
 
 
 router = APIRouter(prefix="/manifests")

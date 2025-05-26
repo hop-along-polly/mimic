@@ -3,15 +3,15 @@ from typing import List, Union
 from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo.collection import ReturnDocument
 
-from testerozza.config import Config
-from testerozza.models import TesterozzaResponse, ManifestEntry, TesterozzaRequest
+from mimic.config import Config
+from mimic.models import MimicResponse, ManifestEntry, MimicRequest
 
 
 # TODO this probably should be able to select a DB or collection that's
 # specific for the customer.
 class ManifestRepo:
     def __init__(self, client):
-        self._collection = client["always-on"]["manifests"]
+        self._collection = client["mimic"]["manifests"]
 
     @classmethod
     def create(cls, cfg: Config):
@@ -31,7 +31,7 @@ class ManifestRepo:
 
         await self._collection.update_one(query, update, upsert=True)
 
-    async def get_responses(self, request: TesterozzaRequest):
+    async def get_responses(self, request: MimicRequest):
         req_jwt = request.encode()
 
         query = {"request": req_jwt}
@@ -44,5 +44,5 @@ class ManifestRepo:
         if not doc:
             return doc, -1
 
-        responses = TesterozzaResponse.decode_responses(doc["responses"])
+        responses = MimicResponse.decode_responses(doc["responses"])
         return responses, doc["called"]

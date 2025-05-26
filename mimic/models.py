@@ -5,7 +5,7 @@ import jwt
 
 # TODO This needs to become a setting specifically for the
 # tenant
-SECRET = "testerozza-secret-key"
+SECRET = "mimic-secret-key"
 
 
 class JWTEncodeable:
@@ -16,7 +16,7 @@ class JWTEncodeable:
         pass
 
 
-class TesterozzaResponse(BaseModel):
+class MimicResponse(BaseModel):
     status_code: (
         int  # TODO could probably further restruct this to valid HTTP status codes.
     )
@@ -41,7 +41,7 @@ class TesterozzaResponse(BaseModel):
         return [cls(**r) for r in decoded]
 
 
-class TesterozzaRequest(BaseModel, JWTEncodeable):
+class MimicRequest(BaseModel, JWTEncodeable):
     method: str  # TODO make this an enum
     url: str  # TODO add some regex validation?
 
@@ -51,15 +51,15 @@ class TesterozzaRequest(BaseModel, JWTEncodeable):
 
 # Handles the Testerozza manifest
 class ManifestEntry(BaseModel):
-    request: TesterozzaRequest
-    responses: Union[TesterozzaResponse, List[TesterozzaResponse]]
+    request: MimicRequest
+    responses: Union[MimicResponse, List[MimicResponse]]
 
     @classmethod
     def decode_and_create(cls, req: str, res: str):
         request = jwt.decode(req, SECRET, algorithms=["HS256"])
 
         decoded_res = jwt.decode(res, SECRET, algorithms=["HS256"])["responses"]
-        responses = [TesterozzaResponse(**r) for r in decoded_res]
+        responses = [MimicResponse(**r) for r in decoded_res]
 
         return cls(request=request, responses=responses)
 

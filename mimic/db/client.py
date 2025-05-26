@@ -11,7 +11,7 @@ class DbClient:
 
     async def health(self):
         try:
-            await self._client["always-on"].command("ping")
+            await self._client["mimic"].command("ping")
         except Exception as e:
             print(e)
             return "offline"

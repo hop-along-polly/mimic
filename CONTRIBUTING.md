@@ -1,4 +1,4 @@
-# Testerozza Contributors
+# Mimic Contributors
 
 - [Code of Conduct](#code-of-conduct)
 - [Definition of Done](#definition-of-done)
@@ -31,7 +31,7 @@
 
 ## Branching Strategy
 
-Testerozza uses trunk based development. The trunk branch is `main` and all Pull Requests should be submitted back to `main`.
+Mimic uses trunk based development. The trunk branch is `main` and all Pull Requests should be submitted back to `main`.
 
 There are 4 types of changes any code base experiences. They are
  - `Bugfixes`: A non-breaking change that fixes an issue
@@ -47,7 +47,7 @@ Depending on the type of work you are performing we recommend using one of the f
 
 ## Versioning
 
-Currently Testerozza is not being versioned. It's initial release will be `v0.1.0` and then we will follow semantic versioning.
+Currently Mimic is not being versioned. It's initial release will be `v0.1.0` and then we will follow semantic versioning.
 While in development no LTS tags will be published.
 
 ## Getting Started
@@ -109,6 +109,6 @@ This runs as part of our Github CI-Checks.
 
 ### Tests
 
-Testerozza's test-suite can be run with `make tests`. This will create a virtual environment, install dependencies and run the tests. If preferred the test-suite can be run with `python -m pytest tests/ -s` but dependencies will have to be installed manually.
+Mimic's test-suite can be run with `make tests`. This will create a virtual environment, install dependencies and run the tests. If preferred the test-suite can be run with `python -m pytest tests/ -s` but dependencies will have to be installed manually.
 
 ## Troubleshooting

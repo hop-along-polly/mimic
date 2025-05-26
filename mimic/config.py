@@ -16,4 +16,4 @@ class Config:
 
     @property
     def mongodb_uri(self):
-        return f"mongodb://{self._db_user}:{self._db_pw}@{self._db_host}:{self._db_port}/always-on?authSource=admin"
+        return f"mongodb://{self._db_user}:{self._db_pw}@{self._db_host}:{self._db_port}/mimic?authSource=admin"

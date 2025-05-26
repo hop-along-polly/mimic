@@ -10,9 +10,9 @@ RUN pip install -r requirements.txt && \
     pip install -r requirements-dev.txt; \
   fi
 
-COPY testerozza testerozza
+COPY mimic mimic
 
 EXPOSE 8000
 
-ENTRYPOINT [ "uvicorn", "testerozza.app:app"] 
+ENTRYPOINT [ "uvicorn", "mimic.app:app"] 
 CMD ["--host", "0.0.0.0", "--port", "8000" ]

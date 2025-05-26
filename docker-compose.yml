@@ -14,7 +14,7 @@ services:
       DB_HOST: db
       DB_PORT: 27017
     volumes:
-      - ${PWD}/testerozza:/opt/code-scribes/testerozza
+      - ${PWD}/mimic:/opt/code-scribes/mimic
 
   db:
     image: mongo
@@ -24,7 +24,7 @@ services:
     environment:
       MONGO_INIT_DB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME}
       MONGO_INIT_DB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
-      MONOG_INITDB_DATABASE: testerozza
+      MONOG_INITDB_DATABASE: mimic
     volumes:
       - ./init-db.js:/docker-entrypoint-initdb.d/init-db.js
       - dbdata:/data/db

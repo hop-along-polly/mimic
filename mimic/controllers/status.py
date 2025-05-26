@@ -3,8 +3,8 @@ from typing import Annotated, Dict
 from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 
-from testerozza.config import Config
-from testerozza.db.client import DbClient
+from mimic.config import Config
+from mimic.db.client import DbClient
 
 router = APIRouter()
 

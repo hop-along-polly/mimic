@@ -1,8 +1,8 @@
 from fastapi.testclient import TestClient
 import pytest
 
-from testerozza.app import app
-from testerozza.controllers.status import get_db_client
+from mimic.app import app
+from mimic.controllers.status import get_db_client
 
 
 class MockDbClient:

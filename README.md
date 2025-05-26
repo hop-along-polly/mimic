@@ -1,36 +1,36 @@
-# Testerozza
+# Mimic
 
-  Testerozza is the API that always responds with the EXACT response you want.
+  Mimic is the API that always responds with the EXACT response you want.
 
-**NOTE: As of right now Testerozza only supports the HTTP protocol but eventually we would like it to support additional protocols such as gRPC, GraphQL etc.**
+**NOTE: As of right now Mimic only supports the HTTP protocol but eventually we would like it to support additional protocols such as gRPC, GraphQL etc.**
 
 
-If you're looking to contribute to Testerozza please read the [Contributing Guidelines](./CONTRIBUTING.md) which will help you oriented with the project, what
+If you're looking to contribute to Mimic please read the [Contributing Guidelines](./CONTRIBUTING.md) which will help you oriented with the project, what
 we expect from contributors and how to setup your development environment.
 
 ## Terminology
 
-- `Request`: An Http request received by Testerozza.
-- `Response`: An Http response that Testerozza has been configured to use as a
+- `Request`: An Http request received by Mimic.
+- `Response`: An Http response that Mimic has been configured to use as a
               response to a specific Request.
-- `Echo Endpoint`: A REST endpoint in Testerozza that imitates another API. When a
-                   Request is recieved Testerozza will respond with the configured
+- `Mimic Endpoint`: A REST endpoint in Mimic that imitates another API. When a
+                   Request is recieved Mimic will respond with the configured
                    Response for that specific Request.
-- `System Endpoint`: A REST Endpoint used to configure, and manage how Testerozza
-                     will behave when imitating an API.
-- `Manifest`: A JSON object (not necessarily a file but it could be) thats maps
+- `System Endpoint`: API Endpoint used to configure, how Mimic server will behave
+                     when imitating an API.
+- `Manifest`: (Deprecated) A JSON object (not necessarily a file but it could be) thats maps
               a single Request to a single Response or series of Responses that
-              Testerozza returns when the Request is received by an echo endpoint.
+              Mimic returns when the Request is received by an echo endpoint.
 
 
 ## Introduction
- - What is Testerozza
- - Why did I build Testerozza
- - What problem(s) is Testerozza solving
+ - What is Mimic
+ - Why did I build Mimic
+ - What problem(s) is Mimic solving
 
 
 ## Future Development
-- [] Rename to Testerozza
+- [] Rename to Mimic
 - [x] Dependency Injection
 - [ ] CI/CD
   - [ ] Mypy - Typing

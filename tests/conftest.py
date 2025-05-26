@@ -1,7 +1,7 @@
 from mongomock_motor import AsyncMongoMockClient
 import pytest
 
-from testerozza.db.manifest_repo import ManifestRepo
+from mimic.db.manifest_repo import ManifestRepo
 
 
 @pytest.fixture
