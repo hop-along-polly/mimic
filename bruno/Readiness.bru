@@ -1,0 +1,20 @@
+meta {
+  name: Readiness
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{protocol}}://{{host}}/v1/readiness
+  body: none
+  auth: none
+}
+
+tests {
+  test('Should return Online', () => {
+    const actual = res.getBody();
+    expect(actual.api).to.equal("online");
+    expect(actual.db).to.equal("online");
+  });
+  
+}

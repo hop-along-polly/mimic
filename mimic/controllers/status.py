@@ -14,7 +14,12 @@ def get_db_client():
     return DbClient.create(cfg)
 
 
-@router.get("/status")
-async def status(db: Annotated[Dict, Depends(get_db_client)]):
+@router.get('/liveness')
+async def live():
+    return JSONResponse({ "api": "online" })
+
+
+@router.get('/readiness')
+async def ready(db: Annotated[Dict, Depends(get_db_client)]):
     db_health = await db.health()
-    return JSONResponse({"api": "online", "db": db_health}, 200)
+    return JSONResponse({ "api": "online", "db": db_health }, 200)

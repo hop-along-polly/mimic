@@ -29,27 +29,39 @@ def offline_db():
     return create_mock
 
 
-def test_status_healthy_db(online_db):
+def test_liveness_probe():
+  # arrange
+  subject = TestClient(app) 
+
+  # act
+  actual = subject.get('/v1/liveness')
+
+  # assert
+  assert 200 == actual.status_code
+  assert { 'api': 'online' } == actual.json()
+
+
+def test_readiness_healthy_db(online_db):
     # arrange
     subject = TestClient(app)
     app.dependency_overrides[get_db_client] = online_db
 
     # act
-    actual = subject.get("/v1/status")
+    actual = subject.get("/v1/readiness")
 
     # assert
     assert 200 == actual.status_code
-    assert {"api": "online", "db": "online"}
+    assert {"api": "online", "db": "online"} == actual.json()
 
 
-def test_status_unhealthy_db(offline_db):
+def test_readiness_unhealthy_db(offline_db):
     # arrange
     subject = TestClient(app)
     app.dependency_overrides[get_db_client] = offline_db
 
     # act
-    actual = subject.get("/v1/status")
+    actual = subject.get("/v1/readiness")
 
     # assert
     assert 200 == actual.status_code
-    assert {"api": "online", "db": "offline"}
+    assert {"api": "online", "db": "offline"} == actual.json()
